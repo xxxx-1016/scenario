@@ -10,10 +10,10 @@ Vehicle-infrastructure cooperative systems have significantly propelled the deve
 
 This project addresses these issues by using template matching and structured parsing to automatically generate standardized cooperative driving scenarios.
 
-## Method Overview
+## Methodology
 
 <p align="center">
-  <img src="./assets/framework.png" alt="V2X cooperative scenario demonstration" width="900">
+  <img src="./assets/framework.png" alt="V2X cooperative scenario demonstration" width="700">
 </p>
 
 The proposed framework consists of three main parts:
