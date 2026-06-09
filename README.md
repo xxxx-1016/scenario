@@ -13,7 +13,7 @@ This project addresses these issues by using template matching and structured pa
 ## Methodology
 
 <p align="center">
-  <img src="./assets/framework.png" alt="V2X cooperative scenario demonstration" width="700">
+  <img src="./assets/framework.png" alt="V2X cooperative scenario demonstration" width="800">
 </p>
 
 The proposed framework consists of three main parts:
