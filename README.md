@@ -34,17 +34,16 @@ The generated scenarios were validated on a Unity3D-esmini co-simulation platfor
 
 ## Scenario Library
 
-A total of 1,044 vehicle-infrastructure cooperative test scenarios were constructed.
+A total of **1,044 vehicle-infrastructure cooperative test scenarios** were constructed.
 
-The scenario library includes:
+The library provides broad coverage across scenario categories, road types, and V2X communication modes.
 
-- 6 scenario categories
-- 13 road types
-- Multiple driving behavior patterns
-- Combined driving maneuvers
-- V2I, V2V, V2N, and V2P communication modes
-
-Safety-related scenarios account for more than 80% of all cases. Intersection scenarios account for over 60%, straight-road scenarios account for about 37%, and special road condition scenarios account for about 2%.
+| Aspect | Coverage |
+| :---: | :---: |
+| Scenario Categories | 6 categories, including safety-related,  perception and recognition, efficiency-related, information service, formation vehicle, and operational vehicle scenarios |
+| Road Types | 13 road types, covering straight roads, turning roads, continuous curves, uphill roads, and intersections |
+| Communication Modes | V2I + V2N, V2V + V2N, V2P + V2N, and V2V + V2P + V2N |
+| Scenario Scale | 1,044 standardized vehicle-infrastructure cooperative test scenarios |
 
 ## Key Features
 
