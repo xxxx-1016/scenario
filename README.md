@@ -3,7 +3,7 @@
 This repository presents an automated method for constructing vehicle-infrastructure cooperative test scenarios. It transforms predefined natural language scenario descriptions into OpenSCENARIO-compliant files and supports V2X message interaction in a Unity3D-esmini co-simulation platform.
 
 <p align="center">
-  <img src="./assets/v2x-scenario-demo.png" alt="V2X cooperative scenario demonstration" width="900">
+  <img src="./assets/framework.png" alt="V2X cooperative scenario demonstration" width="900">
 </p>
 
 ## Overview
