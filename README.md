@@ -74,3 +74,17 @@ The generated scenarios were validated on a Unity3D-esmini co-simulation platfor
 ## Status
 
 The scenario construction framework and co-simulation validation have been completed. The scenario library contains more than 1,000 standardized cooperative driving test scenarios.
+
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="./assets/Steep Slope Warning.gif" alt="Original Scenario" width="95%">
+      <p align="left">🟢 Original Scenario</p>
+    </td>
+    <td align="center" width="50%">
+      <img src="./assets/Steep Slope Warning.gif" alt="Modified Scenario Collision" width="95%">
+      <p align="left">🔴 Modified Scenario (Collision)</p>
+    </td>
+  </tr>
+</table>
