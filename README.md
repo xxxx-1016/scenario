@@ -44,7 +44,7 @@ The generated scenarios were validated on a Unity3D-esmini co-simulation platfor
 
 
 <p align="center">
-  <img src="./assets/assets/SteepSlopeWarning.gif" alt="Demo animation" width="900">
+  <img src="./assets/SteepSlopeWarning.gif" alt="Demo animation" width="900">
 </p>
 
 
