@@ -41,9 +41,7 @@ The library provides broad coverage across scenario categories, road types, and 
 
 The generated scenarios were validated on a Unity3D-esmini co-simulation platform. Several representative generated scenarios are shown below as examples.
 
-<p align="center">
-  <img src="./assets/v2x-scenario-demo.png" alt="Scenario demonstration" width="900">
-</p>
+
 
 <p align="center">
   <img src="./assets/Steep Slope Warning.gif" alt="Demo animation" width="900">
