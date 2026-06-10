@@ -79,11 +79,11 @@ The scenario construction framework and co-simulation validation have been compl
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="./assets/Steep Slope Warning.gif" alt="Original Scenario" width="95%">
+      <img src="./assets/SteepSlopeWarning.gif" alt="Original Scenario" width="95%">
       <p align="left">🟢 Original Scenario</p>
     </td>
     <td align="center" width="50%">
-      <img src="./assets/Steep Slope Warning.gif" alt="Modified Scenario Collision" width="95%">
+      <img src="./assets/SteepSlopeWarning.gif" alt="Modified Scenario Collision" width="95%">
       <p align="left">🔴 Modified Scenario (Collision)</p>
     </td>
   </tr>
