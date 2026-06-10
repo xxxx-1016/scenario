@@ -24,14 +24,6 @@ The proposed framework consists of three main parts:
 
 The method supports the automatic transformation from predefined natural language descriptions to executable vehicle-infrastructure cooperative test scenarios.
 
-## Demonstration
-
-The generated scenarios were validated on a Unity3D-esmini co-simulation platform. The platform supports scenario execution, vehicle behavior simulation, and V2X message visualization.
-
-<p align="center">
-  <img src="./assets/v2x-scenario-demo.png" alt="Scenario demonstration" width="900">
-</p>
-
 ## Scenario Library
 
 A total of **1,044 vehicle-infrastructure cooperative test scenarios** were constructed.
@@ -45,6 +37,19 @@ The library provides broad coverage across scenario categories, road types, and 
 | Communication Modes | V2I + V2N, V2V + V2N, V2P + V2N, and V2V + V2P + V2N |
 | Scenario Scale | 1,044 standardized vehicle-infrastructure cooperative test scenarios |
 
+## Demonstration
+
+The generated scenarios were validated on a Unity3D-esmini co-simulation platform. Several representative generated scenarios are shown below as examples.
+
+<p align="center">
+  <img src="./assets/v2x-scenario-demo.png" alt="Scenario demonstration" width="900">
+</p>
+
+<p align="center">
+  <img src="./assets/Steep Slope Warning.gif" alt="Demo animation" width="900">
+</p>
+
+
 ## Key Features
 
 - Automated scenario generation from natural language descriptions
@@ -53,13 +58,6 @@ The library provides broad coverage across scenario categories, road types, and 
 - RSU-OBU V2X communication support
 - Unity3D-esmini co-simulation validation
 - Large-scale cooperative scenario library
-
-## Platform
-
-- OpenSCENARIO
-- Unity3D
-- esmini
-- V2X message management module
 
 ## Repository Structure
 
@@ -78,7 +76,3 @@ The library provides broad coverage across scenario categories, road types, and 
 ## Status
 
 The scenario construction framework and co-simulation validation have been completed. The scenario library contains more than 1,000 standardized cooperative driving test scenarios.
-
-## Keywords
-
-Vehicle-Infrastructure Cooperation, OpenSCENARIO, V2X, Scenario Generation, Autonomous Driving, Intelligent Transportation, Unity3D, esmini
