@@ -45,11 +45,11 @@ The generated scenarios were validated on a Unity3D-esmini co-simulation platfor
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="./assets/Tunnel Ahead.gif" alt="Original Scenario" width="95%">
+      <img src="./assets/Tunnel Ahead.gif" alt="Tunnel Ahead" width="95%">
       <p align="left">🟢 Tunnel Ahead</p>
     </td>
     <td align="center" width="50%">
-      <img src="./assets/Intersection U-Turn Collision.gif" alt="Modified Scenario Collision" width="95%">
+      <img src="./assets/Intersection U-Turn Collision.gif" alt="Intersection U-Turn Collision" width="95%">
       <p align="left">🔴 Intersection U-Turn Collision</p>
     </td>
   </tr>
