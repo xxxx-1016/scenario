@@ -45,8 +45,8 @@ The generated scenarios were validated on a Unity3D-esmini co-simulation platfor
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="./assets/SteepSlopeWarning.gif" alt="Original Scenario" width="95%">
-      <p align="left">🟢 Original Scenario</p>
+      <img src="./assets/Tunnel Ahead.gif" alt="Original Scenario" width="95%">
+      <p align="left">🟢 Tunnel Ahead</p>
     </td>
     <td align="center" width="50%">
       <img src="./assets/SteepSlopeWarning.gif" alt="Modified Scenario Collision" width="95%">
