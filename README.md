@@ -109,3 +109,28 @@ To further verify cross-platform applicability, a subset of the generated scenar
     </td>
   </tr>
 </table>
+
+## Publication
+
+This work has been accepted for publication.
+
+| Item | Information |
+| :---: | :---: |
+| Title | Template Matching Based Automated Test Scenarios Construction for Vehicle-Infrastructure Cooperative System |
+| Conference Name | The 26th COTA  International Conference of  Transportation Professionals |
+| Status | Accepted |
+| Year | 2026 |
+| DOI | Coming soon |
+
+## Citation
+
+If you find this repository useful, please consider citing our work:
+
+```bibtex
+@article{li2026scenario,
+  title={Template Matching Based Automated Test Scenarios Construction for Vehicle-Infrastructure Cooperative System},
+  author={Xinrong Li and Youquan Liu and Junyan Ma},
+  booktitle={The 26th COTA International Conference of Transportation Professionals},
+  year={2026},
+  note={Accepted}
+}
