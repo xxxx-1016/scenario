@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OpenSCENARIO xmlns="http://www.asam.net/standards/OpenSCENARIO" version="1.0">
+  <FileHeader revMajor="1" revMinor="0" date="2025-05-21T21:08:34.707549" description="T型路口车辆掉头碰撞" author="lxr"/>
+  <ParameterDeclarations>
+    <ParameterDeclaration name="车辆V1" parameterType="string" value="car_white"/>
+    <ParameterDeclaration name="车辆V2" parameterType="string" value="car_red"/>
+  </ParameterDeclarations>
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="../xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="../xodr/three_line_4.xodr"/>
+    <SceneGraphFile filepath="../models/three_line_4.osgb"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="车辆V1">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+    </ScenarioObject>
+    <ScenarioObject name="车辆V2">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_red"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="车辆V1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="0" laneId="1" offset="0" s="30"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="20"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="车辆V2">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="3" laneId="-1" offset="0" s="40"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="20"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="vehicle_turn_around">
+      <Act name="turn_around_act">
+        <ManeuverGroup name="turn_around_group" maximumExecutionCount="1">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="车辆V1"/>
+          </Actors>
+          <Maneuver name="turn_around_maneuver">
+            <Event name="slow_down" priority="overwrite">
+              <Action name="slow_down_action">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="time" value="1"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="10"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="slow_down_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+            <Event name="trigger_turn_around" priority="overwrite">
+              <Action name="turn_around_action">
+                <PrivateAction>
+                  <RoutingAction>
+                    <FollowTrajectoryAction>
+                      <Trajectory name="turn_around_trajectory" closed="false">
+                        <Shape>
+                          <Polyline>
+                            <Vertex time="1">
+                              <Position>
+                                <LanePosition roadId="0" laneId="1" offset="0" s="10"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="2">
+                              <Position>
+                                <LanePosition roadId="0" laneId="1" offset="0" s="5"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="3">
+                              <Position>
+                                <LanePosition roadId="0" laneId="0" offset="0" s="0"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="4">
+                              <Position>
+                                <LanePosition roadId="0" laneId="-1" offset="0" s="5"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="5">
+                              <Position>
+                                <LanePosition roadId="0" laneId="-1" offset="0" s="10"/>
+                              </Position>
+                            </Vertex>
+                          </Polyline>
+                        </Shape>
+                      </Trajectory>
+                      <TimeReference>
+                        <Timing domainAbsoluteRelative="absolute" scale="1.0" offset="0.0"/>
+                      </TimeReference>
+                    </FollowTrajectoryAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="turn_around_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="1" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+            <Event name="speed_up" priority="overwrite">
+              <Action name="speed_up_action">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="time" value="1"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="20"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="speed_up_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="5" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+      </Act>
+    </Story>
+    <Story name="vehicle_turn_right">
+      <Act name="turn_right_act">
+        <ManeuverGroup name="turn_right_group" maximumExecutionCount="1">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="车辆V2"/>
+          </Actors>
+          <Maneuver name="turn_right_maneuver">
+            <Event name="slow_down" priority="overwrite">
+              <Action name="slow_down_action">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="time" value="1"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="10"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="slow_down_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+            <Event name="trigger_turn_right" priority="overwrite">
+              <Action name="turn_right_action">
+                <PrivateAction>
+                  <RoutingAction>
+                    <FollowTrajectoryAction>
+                      <Trajectory name="turn_right_trajectory" closed="false">
+                        <Shape>
+                          <Polyline>
+                            <Vertex time="6">
+                              <Position>
+                                <LanePosition roadId="3" laneId="-1" offset="0" s="110"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="7">
+                              <Position>
+                                <LanePosition roadId="11" laneId="-1" offset="0" s="0"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="8">
+                              <Position>
+                                <LanePosition roadId="11" laneId="-1" offset="0" s="4.5"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="9">
+                              <Position>
+                                <LanePosition roadId="11" laneId="-1" offset="0" s="9"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="10">
+                              <Position>
+                                <LanePosition roadId="0" laneId="-1" offset="0" s="0"/>
+                              </Position>
+                            </Vertex>
+                          </Polyline>
+                        </Shape>
+                      </Trajectory>
+                      <TimeReference>
+                        <Timing domainAbsoluteRelative="absolute" scale="1.0" offset="0.0"/>
+                      </TimeReference>
+                    </FollowTrajectoryAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="turn_right_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="6" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+            <Event name="speed_up" priority="overwrite">
+              <Action name="speed_up_action">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="time" value="1"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="20"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="speed_up_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="10" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="仿真时间超过20秒" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <SimulationTimeCondition value="20" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>
