@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OpenSCENARIO xmlns="http://www.asam.net/standards/OpenSCENARIO" version="1.0">
+  <FileHeader revMajor="1" revMinor="0" date="2025-05-21T21:08:49.271966" description="无信号灯路口车辆交替通行" author="lxr"/>
+  <ParameterDeclarations>
+    <ParameterDeclaration name="主车" parameterType="string" value="car_white"/>
+    <ParameterDeclaration name="机动车1" parameterType="string" value="car_blue"/>
+    <ParameterDeclaration name="机动车2" parameterType="string" value="car_blue"/>
+    <ParameterDeclaration name="机动车3" parameterType="string" value="car_blue"/>
+    <ParameterDeclaration name="机动车4" parameterType="string" value="car_blue"/>
+    <ParameterDeclaration name="机动车5" parameterType="string" value="car_blue"/>
+    <ParameterDeclaration name="机动车6" parameterType="string" value="car_blue"/>
+    <ParameterDeclaration name="机动车7" parameterType="string" value="car_blue"/>
+  </ParameterDeclarations>
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="../xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="../xodr/four_line.xodr"/>
+    <SceneGraphFile filepath="../models/four_line.osgb"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="主车">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+    </ScenarioObject>
+    <ScenarioObject name="机动车1">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+    <ScenarioObject name="机动车2">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+    <ScenarioObject name="机动车3">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+    <ScenarioObject name="机动车4">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+    <ScenarioObject name="机动车5">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+    <ScenarioObject name="机动车6">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+    <ScenarioObject name="机动车7">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="主车">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="2" laneId="-1" offset="0" s="300"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="机动车1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="2" laneId="-1" offset="0" s="293"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="机动车2">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="3" laneId="-1" offset="0" s="114"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="机动车3">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="3" laneId="-1" offset="0" s="107"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="机动车4">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="0" laneId="1" offset="0" s="0"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="机动车5">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="0" laneId="1" offset="0" s="7"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="机动车6">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="1" offset="0" s="0"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="机动车7">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="1" offset="0" s="7"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="0"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="">
+      <Act name=""/>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="仿真时间超过20秒" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <SimulationTimeCondition value="20" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>
