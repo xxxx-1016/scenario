@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OpenSCENARIO xmlns="http://www.asam.net/standards/OpenSCENARIO" version="1.0">
+  <FileHeader revMajor="1" revMinor="0" date="2025-05-21T21:08:46.010249" description="非路口车辆左转二轮车向右换道碰撞预警1" author="lxr"/>
+  <ParameterDeclarations>
+    <ParameterDeclaration name="车辆V1" parameterType="string" value="car_white"/>
+    <ParameterDeclaration name="二轮车" parameterType="string" value="bicycle"/>
+  </ParameterDeclarations>
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="../xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="../xodr/three_line_4.xodr"/>
+    <SceneGraphFile filepath="../models/three_line_4.osgb"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="车辆V1">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+    </ScenarioObject>
+    <ScenarioObject name="二轮车">
+      <CatalogReference catalogName="VehicleCatalog" entryName="bicycle"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="车辆V1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="2" offset="0" s="40"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="20"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="二轮车">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="1" offset="0" s="20"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="10"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="vehicle_turn">
+      <Act name="turn_act">
+        <ManeuverGroup name="turn_group" maximumExecutionCount="1">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="车辆V1"/>
+          </Actors>
+          <Maneuver name="turn_maneuver">
+            <Event name="slow_down" priority="overwrite">
+              <Action name="slow_down_action">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="time" value="1"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="10"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="slow_down_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+            <Event name="trigger_turn" priority="overwrite">
+              <Action name="turn_action">
+                <PrivateAction>
+                  <RoutingAction>
+                    <FollowTrajectoryAction>
+                      <Trajectory name="turn_trajectory" closed="false">
+                        <Shape>
+                          <Polyline>
+                            <Vertex time="3">
+                              <Position>
+                                <LanePosition roadId="1" laneId="2" offset="0" s="2"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="4">
+                              <Position>
+                                <LanePosition roadId="5" laneId="-2" offset="0" s="0"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="5">
+                              <Position>
+                                <LanePosition roadId="5" laneId="-2" offset="0" s="7"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="6">
+                              <Position>
+                                <LanePosition roadId="5" laneId="-2" offset="0" s="14"/>
+                              </Position>
+                            </Vertex>
+                            <Vertex time="7">
+                              <Position>
+                                <LanePosition roadId="0" laneId="-2" offset="0" s="0"/>
+                              </Position>
+                            </Vertex>
+                          </Polyline>
+                        </Shape>
+                      </Trajectory>
+                      <TimeReference>
+                        <Timing domainAbsoluteRelative="absolute" scale="1.0" offset="0.0"/>
+                      </TimeReference>
+                    </FollowTrajectoryAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="turn_left_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="3" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+            <Event name="speed_up" priority="overwrite">
+              <Action name="speed_up_action">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="time" value="1"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="20"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="speed_up_trigger_condition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="7" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+      </Act>
+    </Story>
+    <Story name="VehicleMovement">
+      <Act name="MoveVehicles">
+        <ManeuverGroup name="GroupV1" maximumExecutionCount="1">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="二轮车"/>
+          </Actors>
+          <Maneuver name="V1_Movement">
+            <Event name="V2_ChangeLane" priority="overwrite">
+              <Action name="V1_LaneChange">
+                <PrivateAction>
+                  <LateralAction>
+                    <LaneChangeAction>
+                      <LaneChangeTarget>
+                        <RelativeTargetLane entityRef="二轮车" value="1"/>
+                      </LaneChangeTarget>
+                      <LaneChangeActionDynamics dynamicsShape="sinusoidal" dynamicsDimension="time" value="2"/>
+                    </LaneChangeAction>
+                  </LateralAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="V1_ChangeLane_Trigger" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="仿真时间超过20秒" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <SimulationTimeCondition value="20" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>
