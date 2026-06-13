@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OpenSCENARIO xmlns="http://www.asam.net/standards/OpenSCENARIO" version="1.0">
+  <FileHeader revMajor="1" revMinor="0" date="2025-05-21T21:08:45.835090" description="无红绿灯直行路段碰撞预警(9)" author="lxr"/>
+  <ParameterDeclarations>
+    <ParameterDeclaration name="测试车" parameterType="string" value="car_white"/>
+    <ParameterDeclaration name="背景车" parameterType="string" value="car_blue"/>
+  </ParameterDeclarations>
+  <CatalogLocations>
+    <VehicleCatalog>
+      <Directory path="../xosc/Catalogs/Vehicles"/>
+    </VehicleCatalog>
+  </CatalogLocations>
+  <RoadNetwork>
+    <LogicFile filepath="../xodr/s_4.xodr"/>
+    <SceneGraphFile filepath="../models/s_4.osgb"/>
+  </RoadNetwork>
+  <Entities>
+    <ScenarioObject name="测试车">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_white"/>
+    </ScenarioObject>
+    <ScenarioObject name="背景车">
+      <CatalogReference catalogName="VehicleCatalog" entryName="car_blue"/>
+    </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+        <Private entityRef="测试车">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-2" offset="0" s="240"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="20"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef="背景车">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <LanePosition roadId="1" laneId="-2" offset="0" s="300"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <LongitudinalAction>
+              <SpeedAction>
+                <SpeedActionDynamics dynamicsShape="step" dynamicsDimension="time" value="0.0"/>
+                <SpeedActionTarget>
+                  <AbsoluteTargetSpeed value="20"/>
+                </SpeedActionTarget>
+              </SpeedAction>
+            </LongitudinalAction>
+          </PrivateAction>
+        </Private>
+      </Actions>
+    </Init>
+    <Story name="stop">
+      <ParameterDeclarations>
+        <ParameterDeclaration parameterType="string" name="owner" value="测试车"/>
+      </ParameterDeclarations>
+      <Act name="speed">
+        <ManeuverGroup name="speed" maximumExecutionCount="1">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="$owner"/>
+          </Actors>
+          <Maneuver name="speed">
+            <Event name="speed" priority="overwrite">
+              <Action name="speed">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="linear" dynamicsDimension="rate" value="6"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="30"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="减速触发条件" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0.5" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="Act开始条件" delay="0" conditionEdge="none">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0.1" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      </Act>
+    </Story>
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="仿真时间超过20秒" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <SimulationTimeCondition value="20" rule="greaterThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+  </Storyboard>
+</OpenSCENARIO>
